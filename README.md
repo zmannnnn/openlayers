@@ -1,4 +1,4 @@
-# openlayer
+# openlayer + vue
 
 ## Project setup
 ```
