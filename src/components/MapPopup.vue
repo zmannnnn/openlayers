@@ -104,6 +104,7 @@ export default {
   h3{
     font-size: 14px;
     margin-top: -4px;
+    padding-right: 20px;
   }
   .map-popup-closer{
     position: absolute;
