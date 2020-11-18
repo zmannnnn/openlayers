@@ -103,7 +103,7 @@ export default {
           const style = [
             new Style({
               stroke: new Stroke({
-                color:  _that.lineColor || '409eff',
+                color:  _that.lineColor || '#409eff',
                 width: _that.lineWidth || 2,
                 lineDash: _that.lineDash || null,
                 lineDashOffset: 0
@@ -111,7 +111,7 @@ export default {
               //填充样式
               fill: new Fill({
                 color: _that.fillColor || 'rgba(0,0,0,0.8)' //颜色、渐变或图案
-              }),
+              })
             }),
           ];
           return style;

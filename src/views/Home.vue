@@ -9,6 +9,8 @@
       <MapLineString :pointList="mapLineStringData.pointlist" :lineColor="mapLineStringData.lineColor" :lineWidth="mapLineStringData.lineWidth" :lineDash="mapLineStringData.lineDash" :elementName="mapLineStringData.elementName" :className="mapLineStringData.className"></MapLineString>
       <!-- 多边形 -->
       <MapPolygon :pointList="mapPolygonData.pointlist" :fillColor="mapPolygonData.fillColor" :lineColor="mapPolygonData.lineColor" :lineWidth="mapPolygonData.lineWidth" :lineDash="mapPolygonData.lineDash" :elementName="mapPolygonData.elementName" :className="mapPolygonData.className"></MapPolygon>
+      <!-- 圆形 -->
+      <MapCircle :position="mapCircleData.position" :radius="mapCircleData.radius" :fillColor="mapCircleData.fillColor" :lineColor="mapCircleData.lineColor" :lineWidth="mapCircleData.lineWidth" :lineDash="mapCircleData.lineDash" :elementName="mapCircleData.elementName" :className="mapCircleData.className"></MapCircle>
       <!-- 自定义覆盖物 -->
       <MapOverlay :position="mapOverlayData.position" :className="mapOverlayData.className"><div><img :src="mapOverlayData.img" alt=""></div></MapOverlay>
       <!-- 海量点 -->
@@ -32,6 +34,7 @@ import MapPopup from '@/components/MapPopup'
 import MapIconMark from '@/components/MapIconMark'
 import MapLineString from '@/components/MapLineString'
 import MapPolygon from '@/components/MapPolygon'
+import MapCircle from '@/components/MapCircle'
 import MapOverlay from '@/components/MapOverlay'
 import MapPointCollection from '@/components/MapPointCollection'
 import mapconfig from '@/mapconfig'
@@ -42,6 +45,7 @@ export default {
       MapIconMark,
       MapLineString,
       MapPolygon,
+      MapCircle,
       MapOverlay,
       MapPointCollection
     },
@@ -74,7 +78,7 @@ export default {
           [ 114.07167206985183, 22.5232403088372 ]
         ], // 线条所有的点数组 Array[array]， 必须
         elementName: '地图线条', //弹窗标识别名 String， 非必须，默认为 'el-mapLineString'
-        lineColor: 'rgba(0,77,168,0.9)', // 线条颜色 String，非必须，默认为 '#409eff'
+        lineColor: '#409eff', // 线条颜色 String，非必须，默认为 '#409eff'
         lineWidth: 2, // 线条宽度 Number，非必须，默认为 2
         lineDash: [10], // 虚线 Array[number]， 是否使用虚线，默认为 null
         className: 'map-line-string', // 图层的class String， 非必须， 默认 "map-line-string"
@@ -118,6 +122,16 @@ export default {
         fontColor: '#ffeb00', // 文字的颜色 string （色彩标识，支持rgba），默认'#fff'(如果去掉文字那么直接rgba透明度设置为0)
         fillColor: '#06d073', // 文字的背景颜色 string（色彩标识，支持rgba），默认'#f00'(如果去不要背景颜色那么直接rgba透明度设置为0)
         bgImg: require('@/assets/mark.png') // 设置背景图，如果设置了此那么文字背景可以不设置
+      },
+      mapCircleData:{
+        position: [ 114.07272943851653, 22.52535977514209 ], // 圆中心点 Array， 必须
+        radius: 100, // 圆半径 number ，默认为 100
+        fillColor: 'rgba(255,255,255,0.5)', // 圆形填充颜色，非必须，默认为 'rgba(255,255,255,0.5)'
+        elementName: '圆形叠加', // 圆形识别名称 String, 非必须，默认为 'el-mapCircle'
+        lineColor: '#409eff', // 圆形线条颜色 String，非必须，默认为 '#409eff'
+        lineWidth: 2,// 圆形线条宽度 Number，非必须，默认为 2
+        lineDash: [20, 5], // 圆形虚线 Array[number], 是否使用虚线 ，默认为 null
+        className: 'map-circle' // 图层的class String, 非必须，默认为 'map-circle'
       },
       mapData: null,
       mapCenter: [ 114.07228950670621, 22.524837614865916 ],

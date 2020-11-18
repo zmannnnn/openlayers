@@ -64,6 +64,21 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 */
 
 ```
+### 圆形（MapCircle）
+```
+ <MapCircle :position="mapCircleData.position" :radius="mapCircleData.radius" :fillColor="mapCircleData.fillColor" :lineColor="mapCircleData.lineColor" :lineWidth="mapCircleData.lineWidth" :lineDash="mapCircleData.lineDash" :elementName="mapCircleData.elementName" :className="mapCircleData.className"></MapCircle>
+/**
+* position // 圆中心点 Array， 必须
+* radius // 圆半径 number ，默认为 100
+* fillColor // 圆形填充颜色，非必须，默认为 'rgba(255,255,255,0.5)'
+* elementName // 圆形识别名称 String, 非必须，默认为 'el-mapCircle'
+* lineColor // 圆形线条颜色 String，非必须，默认为 '#409eff'
+* lineWidth // 圆形线条宽度 Number，非必须，默认为 2
+* lineDash // 圆形虚线 Array[number], 是否使用虚线 ，默认为 null
+* className // 图层的class String, 非必须，默认为 'map-circle'
+*/
+
+```
 ### 自定义覆盖物（MapOverlay）
 ```
 <MapOverlay :position="mapOverlayData.position" :className="mapOverlayData.className"><div><img :src="mapOverlayData.img" alt=""></div></MapOverlay>

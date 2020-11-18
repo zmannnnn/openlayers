@@ -97,7 +97,7 @@ export default {
           const style = [
             new Style({
               stroke: new Stroke({
-                color: _that.lineColor || '409eff',
+                color: _that.lineColor || '#409eff',
                 width: _that.lineWidth || 2,
                 lineDash: _that.lineDash || null,
                 lineDashOffset: 0
