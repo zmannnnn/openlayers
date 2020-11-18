@@ -15,11 +15,12 @@
       <MapOverlay :position="mapOverlayData.position" :className="mapOverlayData.className"><div><img :src="mapOverlayData.img" alt=""></div></MapOverlay>
       <!-- 海量点 -->
       <MapPointCollection :pointList="mapPointCollectionData.pointlist" :distance="mapPointCollectionData.distance" :fillColor="mapPointCollectionData.fillColor" :fontColor="mapPointCollectionData.fontColor" :zIndex='mapPointCollectionData.zIndex' :offset="mapPointCollectionData.offset"></MapPointCollection>
-      <!-- pointlist -->
       <!-- 循环使用的方法 -->
       <template v-for="(item,index) of pointlist">
         <MapIconMark :position="item" :icon='iconImg' :key="index" :label="'标记点' + String(index)"></MapIconMark>
       </template>
+      <!-- 路径示例 -->
+      <MapLineString :pointList="pointlist" :lineColor="'red'" :lineWidth="5" :lineDash="null" :elementName="'轨迹'" :className="'map-road'"></MapLineString>
     </div>
     <!-- <MapPolyLine :center="pointlist"></MapPolyLine> -->
     <div class="click-center">{{clickCenter}}</div>
