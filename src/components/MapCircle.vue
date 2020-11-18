@@ -97,7 +97,7 @@ export default {
       let metersPerUnit = _that.$parent.$data.mapData.getView().getProjection().getMetersPerUnit()
       let circleRadius =  ( _that.radius || 100) / metersPerUnit
       // 创建矢量容器
-      const centerRadius = new Circle([ 114.07188181093592, 22.525505484910624 ], circleRadius)
+      const centerRadius = new Circle(_that.position, circleRadius)
       const vectorSource = new SourceVec({})
       //创建图标特性
       const circleFeature  = new Feature({

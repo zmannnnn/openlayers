@@ -124,8 +124,8 @@ export default {
         bgImg: require('@/assets/mark.png') // 设置背景图，如果设置了此那么文字背景可以不设置
       },
       mapCircleData:{
-        position: [ 114.07272943851653, 22.52535977514209 ], // 圆中心点 Array， 必须
-        radius: 100, // 圆半径 number ，默认为 100
+        position: [ 114.07446296239873, 22.524805291947303 ], // 圆中心点 Array， 必须
+        radius: 150, // 圆半径 number ，默认为 100
         fillColor: 'rgba(255,255,255,0.5)', // 圆形填充颜色，非必须，默认为 'rgba(255,255,255,0.5)'
         elementName: '圆形叠加', // 圆形识别名称 String, 非必须，默认为 'el-mapCircle'
         lineColor: '#409eff', // 圆形线条颜色 String，非必须，默认为 '#409eff'
