@@ -17,7 +17,6 @@ export default {
   },
   data() {
     return {
-      popupShow: true,
       dialogOverlay: null
     }
   },
@@ -48,10 +47,10 @@ export default {
   },
   methods:{
     reload(){
-      if(this.dialogOverlay){
-        this.dialogOverlay.getSource().clear()
+      if(this.dialogOverlay) {
+        this.$parent.$data.mapData.removeOverlay(this.dialogOverlay)
       }
-     this.dialogOverlay = new Overlay({
+      this.dialogOverlay = new Overlay({
         element: this.$refs.overlayMain,
         stopEvent: false,
         offset: this.offset || [0, 0],

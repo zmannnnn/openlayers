@@ -21,7 +21,8 @@ export default {
   },
   data() {
     return {
-      popupShow: true
+      popupShow: true,
+      dialogOverlay: null
     }
   },
   watch:{
@@ -64,7 +65,10 @@ export default {
   },
   methods:{
     reload(){
-      const dialogOverlay = new Overlay({
+      if(this.dialogOverlay) {
+        this.$parent.$data.mapData.removeOverlay(this.dialogOverlay)
+      }
+      this.dialogOverlay = new Overlay({
         element: this.$refs.mapPopup,
         stopEvent: false,
         offset: this.offset || [0, 0],
@@ -73,8 +77,8 @@ export default {
           duration: 250,
         },
       })
-      dialogOverlay.setPosition(this.position)
-      this.$parent.$data.mapData.addOverlay(dialogOverlay)
+      this.dialogOverlay.setPosition(this.position)
+      this.$parent.$data.mapData.addOverlay(this.dialogOverlay)
     },
     closePopup(){
       this.$emit('close', false)

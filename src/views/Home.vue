@@ -180,6 +180,7 @@ export default {
       this.mapData.getView().animate({
         center:evt.coordinate,
       })
+      this.mapOverlayData.position = [ 114.07446564886402, 22.524799941013985 ]
       // 这个做了一个点击改变中心点的操作
       setTimeout(()=>{
         this.mapIconData.position = [ 114.07438338675577, 22.522278765283236 ]
