@@ -103,7 +103,7 @@ export default {
       },
       // 自定义图层数据
       mapOverlayData:{
-        position: [ 114.07253789792126, 22.524477970304865 ], // 标注中心点 Array, 必须
+        position: [ 114.07439169364486, 22.525032349827814 ], // 标注中心点 Array, 必须
         className: 'map-overlay', // 设置自定义图层的class String ，非必须， 默认 'map-overlay'
         offset:[200,200], // 设置自定义图层的偏移量 Array[number] ，非必须,默认[0, 0]
         img: require('@/assets/hot.gif') // slot
@@ -154,10 +154,16 @@ export default {
   methods:{
     initMap(){
       const mapContainer = this.$refs.rootmap
+      // 控件展示
       const FullScreen = new olControl.FullScreen() // 全屏控件
+      const ScaleLine = new olControl.ScaleLine() // 比例尺控件
+      // const MousePosition = new olControl.MousePosition() // 鼠标经过位置坐标指示
+      // const ZoomSlider = new olControl.ZoomSlider() // 滑动缩放
+      // const ZoomToExtent = new olControl.ZoomToExtent() // 特定程度上更改地图视图
+      const Zoom = new olControl.Zoom() // 放大缩小按钮
       const map = new Map({
         layers: mapconfig.streetmap(),
-        controls: [FullScreen],
+        controls: [FullScreen, ScaleLine, Zoom],
         target: mapContainer,
         view: new View({
           projection: "EPSG:4326",
@@ -180,7 +186,7 @@ export default {
       this.mapData.getView().animate({
         center:evt.coordinate,
       })
-      this.mapOverlayData.position = [ 114.07446564886402, 22.524799941013985 ]
+      // this.mapOverlayData.position = [ 114.07446564886402, 22.524799941013985 ]
       // 这个做了一个点击改变中心点的操作
       setTimeout(()=>{
         this.mapIconData.position = [ 114.07438338675577, 22.522278765283236 ]
