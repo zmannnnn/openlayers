@@ -6,23 +6,22 @@
       <!-- 点标注，如果只想用文字标注label，可以把图片设置成一个像素的透明图片，如果只想用图标就label设置为null，单独的懒得封装了,-->
       <MapIconMark :position="mapIconData.position" :label="mapIconData.label" :icon='mapIconData.icon' :elementName="mapIconData.elementName" :className="mapIconData.className"></MapIconMark>
       <!-- 折线 -->
-      <MapLineString :pointList="mapLineStringData.pointlist" :lineColor="mapLineStringData.lineColor" :lineWidth="mapLineStringData.lineWidth" :lineDash="mapLineStringData.lineDash" :elementName="mapLineStringData.elementName" :className="mapLineStringData.className"></MapLineString>
+<!--      <MapLineString :pointList="mapLineStringData.pointlist" :lineColor="mapLineStringData.lineColor" :lineWidth="mapLineStringData.lineWidth" :lineDash="mapLineStringData.lineDash" :elementName="mapLineStringData.elementName" :className="mapLineStringData.className"></MapLineString>-->
       <!-- 多边形 -->
-      <MapPolygon :pointList="mapPolygonData.pointlist" :fillColor="mapPolygonData.fillColor" :lineColor="mapPolygonData.lineColor" :lineWidth="mapPolygonData.lineWidth" :lineDash="mapPolygonData.lineDash" :elementName="mapPolygonData.elementName" :className="mapPolygonData.className"></MapPolygon>
+<!--      <MapPolygon :pointList="mapPolygonData.pointlist" :fillColor="mapPolygonData.fillColor" :lineColor="mapPolygonData.lineColor" :lineWidth="mapPolygonData.lineWidth" :lineDash="mapPolygonData.lineDash" :elementName="mapPolygonData.elementName" :className="mapPolygonData.className"></MapPolygon>-->
       <!-- 圆形 -->
-      <MapCircle :position="mapCircleData.position" :radius="mapCircleData.radius" :fillColor="mapCircleData.fillColor" :lineColor="mapCircleData.lineColor" :lineWidth="mapCircleData.lineWidth" :lineDash="mapCircleData.lineDash" :elementName="mapCircleData.elementName" :className="mapCircleData.className"></MapCircle>
+<!--      <MapCircle :position="mapCircleData.position" :radius="mapCircleData.radius" :fillColor="mapCircleData.fillColor" :lineColor="mapCircleData.lineColor" :lineWidth="mapCircleData.lineWidth" :lineDash="mapCircleData.lineDash" :elementName="mapCircleData.elementName" :className="mapCircleData.className"></MapCircle>-->
       <!-- 自定义覆盖物 -->
-      <MapOverlay :position="mapOverlayData.position" :className="mapOverlayData.className"><div><img :src="mapOverlayData.img" alt=""></div></MapOverlay>
+<!--      <MapOverlay :position="mapOverlayData.position" :className="mapOverlayData.className"><div><img :src="mapOverlayData.img" alt=""></div></MapOverlay>-->
       <!-- 海量点 -->
-      <MapPointCollection :pointList="mapPointCollectionData.pointlist" :distance="mapPointCollectionData.distance" :fillColor="mapPointCollectionData.fillColor" :fontColor="mapPointCollectionData.fontColor" :zIndex='mapPointCollectionData.zIndex' :offset="mapPointCollectionData.offset"></MapPointCollection>
+<!--      <MapPointCollection :pointList="mapPointCollectionData.pointlist" :distance="mapPointCollectionData.distance" :fillColor="mapPointCollectionData.fillColor" :fontColor="mapPointCollectionData.fontColor" :zIndex='mapPointCollectionData.zIndex' :offset="mapPointCollectionData.offset"></MapPointCollection>-->
       <!-- 循环使用的方法 -->
-      <template v-for="(item,index) of pointlist">
-        <MapIconMark :position="item" :icon='iconImg' :key="index" :label="'标记点' + String(index)"></MapIconMark>
-      </template>
+<!--      <template v-for="(item,index) of pointlist">-->
+<!--        <MapIconMark :position="item" :icon='iconImg' :key="index" :label="'标记点' + String(index)"></MapIconMark>-->
+<!--      </template>-->
       <!-- 路径示例 -->
-      <MapLineString :pointList="pointlist" :lineColor="'red'" :lineWidth="5" :lineDash="null" :elementName="'轨迹'" :className="'map-road'"></MapLineString>
+<!--      <MapLineString :pointList="pointlist" :lineColor="'red'" :lineWidth="5" :lineDash="null" :elementName="'轨迹'" :className="'map-road'"></MapLineString>-->
     </div>
-    <!-- <MapPolyLine :center="pointlist"></MapPolyLine> -->
     <div class="click-center">{{clickCenter}}</div>
   </div>
 </template>
@@ -41,20 +40,11 @@ import MapPointCollection from '@/components/MapPointCollection'
 import mapconfig from '@/mapconfig'
 export default {
   name:'openlayer',
-  components: {
-      MapPopup,
-      MapIconMark,
-      MapLineString,
-      MapPolygon,
-      MapCircle,
-      MapOverlay,
-      MapPointCollection
-    },
   data() {
     return {
       // 弹出窗体图层数据
       mapPopupData:{
-        position: [ 114.06919853061095, 22.52312915135971 ], // 弹窗中心点 Array[array]， 必须
+        position: [ 120.06919853061095, 30.52312915135971 ], // 弹窗中心点 Array[array]， 必须
         title: '弹窗标题', // 弹窗标题 String，非必须，默认为 ' '
         show: false, // 弹窗显隐 Boolean，必须，默认为 true
         offset:[0, 0], // 弹窗偏移 Array[number]，必须，默认为 [0, 0]
@@ -62,8 +52,8 @@ export default {
       },
       // 点标注图层数据
       mapIconData:{
-        position: [ 114.0744662014354, 22.52087080791021 ], // 标注中心点 Array， 必须
-        icon: require('@/assets/logo.png'), // 文件地址 String[url] ，必须 ，默认为 null，
+        position: [ 120.07228950670621, 30.524837614865916 ], // 标注中心点 Array， 必须
+        icon: require('@/assets/mark.png'), // 文件地址 String[url] ，必须 ，默认为 null，
         label: '这个是中心位置', // 标注点名称 String， 非必须， 默认为 null
         elementName: '点标识ID', // 标注点识别名称 String， 可以通过 feature.get('name') 获取到， 非必须， 默认为 'el-mapIconMark'
         className: 'map-icon-mark' // 图层的class String， 非必须，默认为 'map-icon-mark'
@@ -71,12 +61,12 @@ export default {
       // 折线图层数据
       mapLineStringData:{
         pointlist:[
-          [ 114.07167206985183, 22.5232403088372 ],
-          [ 114.07770027654792, 22.523326106333492 ],
-          [ 114.07195557462218, 22.518950434022546 ],
-          [ 114.07445489299245, 22.52480331540012 ],
-          [ 114.07624544943681, 22.519340980469103 ],
-          [ 114.07167206985183, 22.5232403088372 ]
+          [ 120.07167206985183, 30.5232403088372 ],
+          [ 120.07770027654792, 30.523326106333492 ],
+          [ 120.07195557462218, 30.518950434022546 ],
+          [ 120.07445489299245, 30.52480331540012 ],
+          [ 120.07624544943681, 30.519340980469103 ],
+          [ 120.07167206985183, 30.5232403088372 ]
         ], // 线条所有的点数组 Array[array]， 必须
         elementName: '地图线条', //弹窗标识别名 String， 非必须，默认为 'el-mapLineString'
         lineColor: '#409eff', // 线条颜色 String，非必须，默认为 '#409eff'
@@ -88,11 +78,11 @@ export default {
       // 多边形图层数据
       mapPolygonData:{
         pointlist:[
-          [ 114.06763153723739, 22.523766343504477 ],
-          [ 114.07099169050478, 22.523803784736963 ],
-          [ 114.06770308108405, 22.521172327154904 ],
-          [ 114.0693165842837, 22.524608688036995 ],
-          [ 114.07017607779578, 22.521397632712155 ]
+          [ 120.06763153723739, 30.523766343504477 ],
+          [ 120.07099169050478, 30.523803784736963 ],
+          [ 120.06770308108405, 30.521172327154904 ],
+          [ 120.0693165842837, 30.524608688036995 ],
+          [ 120.07017607779578, 30.521397632712155 ]
         ],
         fillColor: 'rgba(255,0,0,0.8)', // 多边形填充颜色，非必须，默认为 'rgba(0,0,0,0.8)'
         elementName: '地图多边形', // 多边形识别名称 String, 非必须，默认为 'el-mapPolygon'
@@ -103,7 +93,7 @@ export default {
       },
       // 自定义图层数据
       mapOverlayData:{
-        position: [ 114.07439169364486, 22.525032349827814 ], // 标注中心点 Array, 必须
+        position: [ 120.07439169364486, 30.525032349827814 ], // 标注中心点 Array, 必须
         className: 'map-overlay', // 设置自定义图层的class String ，非必须， 默认 'map-overlay'
         offset:[200,200], // 设置自定义图层的偏移量 Array[number] ，非必须,默认[0, 0]
         img: require('@/assets/hot.gif') // slot
@@ -111,11 +101,11 @@ export default {
       // 海量点图层数据
       mapPointCollectionData:{
         pointlist:[
-          [ 114.06923493949402, 22.5240832382725 ],
-          [ 114.0682861161323, 22.523565093192584 ],
-          [ 114.06995237746318, 22.523445526204714 ],
-          [ 114.0685676099809, 22.522193726398406 ],
-          [ 114.06969098007714, 22.522269498868212 ]
+          [ 120.06923493949402, 30.5240832382725 ],
+          [ 120.0682861161323, 30.523565093192584 ],
+          [ 120.06995237746318, 30.523445526204714 ],
+          [ 120.0685676099809, 30.522193726398406 ],
+          [ 120.06969098007714, 30.522269498868212 ]
         ],
         distance: 100, // 收起点的间距  number，必须，默认为 40
         zIndex: 500, // 图层z轴高度， 非必须， 默认 400
@@ -125,7 +115,7 @@ export default {
         bgImg: require('@/assets/mark.png') // 设置背景图，如果设置了此那么文字背景可以不设置
       },
       mapCircleData:{
-        position: [ 114.07446296239873, 22.524805291947303 ], // 圆中心点 Array， 必须
+        position: [ 120.07446296239873, 30.524805291947303 ], // 圆中心点 Array， 必须
         radius: 150, // 圆半径 number ，默认为 100
         fillColor: 'rgba(255,255,255,0.5)', // 圆形填充颜色，非必须，默认为 'rgba(255,255,255,0.5)'
         elementName: '圆形叠加', // 圆形识别名称 String, 非必须，默认为 'el-mapCircle'
@@ -135,16 +125,16 @@ export default {
         className: 'map-circle' // 图层的class String, 非必须，默认为 'map-circle'
       },
       mapData: null,
-      mapCenter: [ 114.07228950670621, 22.524837614865916 ],
+      mapCenter: [ 120.07228950670621, 30.524837614865916 ],
       mapZoom: 18,
       clickCenter: [0,0],
       popupText: '弹窗初始化文字',
       iconImg: require('@/assets/mark.png'), // 文件地址 String[url]
       pointlist:[
-        [ 114.07871607950588, 22.52222782549443 ],
-        [ 114.07844961562236, 22.52315316542209 ],
-        [ 114.07696995439895, 22.524754342150676 ],
-        [ 114.08107178741518, 22.524136654355292 ]
+        [ 120.07871607950588, 30.52222782549443 ],
+        [ 120.07844961562236, 30.52315316542209 ],
+        [ 120.07696995439895, 30.524754342150676 ],
+        [ 120.08107178741518, 30.524136654355292 ]
       ]
     }
   },
@@ -186,12 +176,12 @@ export default {
       this.mapData.getView().animate({
         center:evt.coordinate,
       })
-      // this.mapOverlayData.position = [ 114.07446564886402, 22.524799941013985 ]
+      // this.mapOverlayData.position = [ 120.07446564886402, 30.524799941013985 ]
       // 这个做了一个点击改变中心点的操作
       setTimeout(()=>{
-        this.mapIconData.position = [ 114.07438338675577, 22.522278765283236 ]
+        this.mapIconData.position = [ 120.07438338675577, 30.522278765283236 ]
         this.mapData.getView().animate({
-          center:[ 114.07438338675577, 22.522278765283236 ],
+          center:[ 120.07438338675577, 30.522278765283236 ],
         })
       },5000)
     },
@@ -224,7 +214,16 @@ export default {
       this.mapPopupData.show = false
       this.popupText = ''
     }
-  }
+  },
+  components: {
+    MapPopup,
+    MapIconMark,
+    // MapLineString,
+    // MapPolygon,
+    // MapCircle,
+    // MapOverlay,
+    //     MapPointCollection
+  },
 }
 </script>
 <style lang="scss" scoped>
