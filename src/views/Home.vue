@@ -126,7 +126,7 @@ export default {
       },
       mapData: null,
       mapCenter: [ 120.07228950670621, 30.524837614865916 ],
-      mapZoom: 18,
+      mapZoom: 8,
       clickCenter: [0,0],
       popupText: '弹窗初始化文字',
       iconImg: require('@/assets/mark.png'), // 文件地址 String[url]
