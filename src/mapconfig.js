@@ -41,7 +41,7 @@ const streetmap = function () {
             maplayer =new TileLayer({
                 source: new WMTS({
                     //服务地址
-                    url: 'http://192.168.1.189:8080/geoserver/gwc/service/wmts',
+                    url: 'http://localhost:8080/geoserver/gwc/service/wmts',
                     layer: 'shengting:zhej',
                     //切片集
                     matrixSet: 'SCSG2000',
