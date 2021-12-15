@@ -1,5 +1,6 @@
 <template>
   <div class="openlayer">
+    <div style="top: 126px; left: 560px; position: absolute;z-index: 1" class="navContianer"  ref="info">全省</div>
     <div id="map" ref="rootmap">
       <!-- 弹出窗体 -->
       <MapPopup :position="mapPopupData.position" :title="mapPopupData.title" :offset="mapPopupData.offset"
@@ -9,7 +10,7 @@
       <MapIconMark :position="mapIconData.position" :label="mapIconData.label" :icon='mapIconData.icon'
                    :elementName="mapIconData.elementName" :className="mapIconData.className"></MapIconMark>
      <!--GeoJSON文件数据-->
-      <MapFeature :geoFeature="geoFeature"></MapFeature>
+      <MapFeature :geoFeature="geoFeature" @switchLayerChangeName="switchLayerChangeName"></MapFeature>
       <!-- 折线 -->
       <!--      <MapLineString :pointList="mapLineStringData.pointlist" :lineColor="mapLineStringData.lineColor" :lineWidth="mapLineStringData.lineWidth" :lineDash="mapLineStringData.lineDash" :elementName="mapLineStringData.elementName" :className="mapLineStringData.className"></MapLineString>-->
       <!-- 多边形 -->
@@ -45,6 +46,7 @@ import MapOverlay from '@/components/MapOverlay'
 import MapPointCollection from '@/components/MapPointCollection'
 import mapconfig from '@/mapconfig'
 import geoJson from "@/components/geojson/zhejiang_full"
+import hangzhou_geoJson from "@/components/geojson/hangzhou_full"
 
 export default {
   name: 'openlayer',
@@ -223,6 +225,10 @@ export default {
     mapPopupClose(e) {
       this.mapPopupData.show = false
       this.popupText = ''
+    },
+    switchLayerChangeName(checkName){
+      this.$refs.info.innerHTML=checkName
+      this.geoFeature=hangzhou_geoJson
     }
   },
   components: {
@@ -258,5 +264,17 @@ export default {
   background: rgba($color: #000000, $alpha: .5);
   color: #fff;
   border-radius: 4px;
+}
+.navContianer {
+  position: fixed;
+  background: rgba(29,61,95,.8);
+  top: 12.7% !important;
+  //left: calc(100vw * 610/1920) !important;
+  color: #00b4ff !important;
+  padding: 10px 20px;
+  font-size: calc(100vw * 22 / 1920);
+  /* border: 1px solid #0693ec; */
+  border-radius: 4px;
+  height: 30px;
 }
 </style>
