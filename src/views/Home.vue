@@ -1,6 +1,6 @@
 <template>
   <div class="openlayer">
-    <div style="top: 126px; left: 560px; position: absolute;z-index: 1" class="navContianer"  ref="info">全省</div>
+    <div style="top: 126px; left: 560px; position: absolute;z-index: 1" class="navContianer" ref="info">全省</div>
     <div id="map" ref="rootmap">
       <!-- 弹出窗体 -->
       <MapPopup :position="mapPopupData.position" :title="mapPopupData.title" :offset="mapPopupData.offset"
@@ -9,7 +9,7 @@
       <!-- 点标注，如果只想用文字标注label，可以把图片设置成一个像素的透明图片，如果只想用图标就label设置为null，单独的懒得封装了,-->
       <MapIconMark :position="mapIconData.position" :label="mapIconData.label" :icon='mapIconData.icon'
                    :elementName="mapIconData.elementName" :className="mapIconData.className"></MapIconMark>
-     <!--GeoJSON文件数据-->
+      <!--GeoJSON文件数据-->
       <MapFeature :geoFeature="geoFeature" @switchLayerChangeName="switchLayerChangeName"></MapFeature>
       <!-- 折线 -->
       <!--      <MapLineString :pointList="mapLineStringData.pointlist" :lineColor="mapLineStringData.lineColor" :lineWidth="mapLineStringData.lineWidth" :lineDash="mapLineStringData.lineDash" :elementName="mapLineStringData.elementName" :className="mapLineStringData.className"></MapLineString>-->
@@ -45,14 +45,16 @@ import MapCircle from '@/components/MapCircle'
 import MapOverlay from '@/components/MapOverlay'
 import MapPointCollection from '@/components/MapPointCollection'
 import mapconfig from '@/mapconfig'
-import geoJson from "@/components/geojson/zhejiang_full"
+import zhejiang_geoJson from "@/components/geojson/zhejiang_full"
 import hangzhou_geoJson from "@/components/geojson/hangzhou_full"
+
+const cityNames = ["浙江省", "杭州市"];
 
 export default {
   name: 'openlayer',
   data() {
     return {
-      geoFeature:geoJson,
+      geoFeature: zhejiang_geoJson,
       // 弹出窗体图层数据
       mapPopupData: {
         position: [120.06919853061095, 30.52312915135971], // 弹窗中心点 Array[array]， 必须
@@ -226,9 +228,33 @@ export default {
       this.mapPopupData.show = false
       this.popupText = ''
     },
-    switchLayerChangeName(checkName){
-      this.$refs.info.innerHTML=checkName
-      this.geoFeature=hangzhou_geoJson
+    /**
+     * 选中图层，修改名字
+     * @param checkName 城市名称
+     */
+    switchLayerChangeName(checkName) {
+      this.$refs.info.innerHTML = checkName
+    },
+    /**
+     * 点击图层，修改图层
+     * @param checkName 城市名称
+     */
+    switchLayer(checkName,center) {
+      //todo
+      if (checkName == cityNames[1]) {
+        this.geoFeature = hangzhou_geoJson
+        this.mapData.getView().animate({
+          center: center,
+          zoom:9
+        })
+      } else {
+        this.geoFeature = zhejiang_geoJson
+        this.mapData.getView().animate({
+          center: this.mapCenter,
+          zoom:this.mapZoom
+        })
+      }
+
     }
   },
   components: {
@@ -265,9 +291,10 @@ export default {
   color: #fff;
   border-radius: 4px;
 }
+
 .navContianer {
   position: fixed;
-  background: rgba(29,61,95,.8);
+  background: rgba(29, 61, 95, .8);
   top: 12.7% !important;
   //left: calc(100vw * 610/1920) !important;
   color: #00b4ff !important;

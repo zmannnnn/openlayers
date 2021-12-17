@@ -86,7 +86,7 @@ export default {
           return style;
         }
       });
-      let map=this.$parent.$data.mapData
+      let map = this.$parent.$data.mapData
       map.addLayer(this.polygonLayer)
       this.switchLayer(map)
 
@@ -95,7 +95,7 @@ export default {
      * 图层切换
      * @param map 地图组件
      */
-    switchLayer(map){
+    switchLayer(map) {
       const featureOverlay = new VectorLayer({
         source: new VectorSource(),
         map: map,
@@ -106,8 +106,8 @@ export default {
       });
 
       let highlight;
-      const displayFeatureInfo = (pixel)=> {
-        const feature = map.forEachFeatureAtPixel(pixel, function (feature) {
+      const displayFeatureInfo = (pixel) => {
+        const feature = map.forEachFeatureAtPixel(pixel, (feature) => {
           return feature;
         });
         if (feature !== highlight) {
@@ -117,21 +117,27 @@ export default {
           if (feature) {
             featureOverlay.getSource().addFeature(feature);
             //调用父组件方法
-            this.$emit('switchLayerChangeName',feature.get('name'))
+            this.$emit('switchLayerChangeName', feature.get('name'))
           }
           highlight = feature;
         }
       };
-
-      map.on('pointermove', function (evt) {
+      map.on('pointermove', (evt) => {
         if (evt.dragging) {
           return;
         }
         const pixel = map.getEventPixel(evt.originalEvent);
         displayFeatureInfo(pixel);
       });
-      map.on('click', function (evt) {
-        displayFeatureInfo(evt.pixel);
+      map.on('click', (evt) => {
+        const feature = map.forEachFeatureAtPixel(evt.pixel, function (feature) {
+          return feature;
+        });
+        if (feature) {
+          this.$parent.switchLayer(feature.get('name'),feature.get('centroid'))
+        } else {
+          this.$parent.switchLayer("")
+        }
       });
     }
   }
